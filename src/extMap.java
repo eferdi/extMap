@@ -13,7 +13,6 @@ public class extMap extends JFrame
     public extMap()
     {
         super();
-
         Container container = getContentPane();
         mapCanvas = new displayMap();
 

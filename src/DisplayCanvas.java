@@ -10,8 +10,7 @@ class DisplayCanvas extends JPanel implements MouseListener
 {
     private int currRefX = 0, currRefY = 0;
     private int currPosX = 0, currPosY = 0;
-    private int markerPlayerX = 200, markerPlayerY = 200;
-    private int dragSpeed = 1;
+    private int markerPlayerX = 1800, markerPlayerY = 1300;
     private double scaleBy = 1;
     private double scaleMax = 3;
     private double scaleMin = 0.2;
@@ -64,6 +63,7 @@ class DisplayCanvas extends JPanel implements MouseListener
         //TODO link the scale factor with the moveXY values
         if (currRefX != mouseX)
         {
+            int markerPlayerNewPosX = markerPlayerX;
             int moveXBy = +(mouseX - currRefX);
             if (moveXBy < 0)
             {
@@ -72,22 +72,30 @@ class DisplayCanvas extends JPanel implements MouseListener
             if (currRefX > mouseX)
             {
                 currPosX -= moveXBy;
-                markerPlayerX -= moveXBy;
+                markerPlayerNewPosX -= moveXBy;
+                currRefX = mouseX;
             }
             else
             {
                 currPosX += moveXBy;
-                markerPlayerX += moveXBy;
+                markerPlayerNewPosX += moveXBy;
+                currRefX = mouseX;
             }
-            currRefX = mouseX;
+
 
             if (currPosX > 0)
             {
                 currPosX = 0;
             }
+            else
+            {
+                markerPlayerX = markerPlayerNewPosX;
+            }
         }
-        if (currRefX != mouseY)
+
+        if (currRefY != mouseY)
         {
+            int markerPlayerNewPosY = markerPlayerY;
             int moveYBy = +(mouseY - currRefY);
             if (moveYBy < 0)
             {
@@ -96,18 +104,23 @@ class DisplayCanvas extends JPanel implements MouseListener
             if (currRefY > mouseY)
             {
                 currPosY -= moveYBy;
-                markerPlayerY -= moveYBy;
+                markerPlayerNewPosY -= moveYBy;
+                currRefY = mouseY;
             }
             else
             {
                 currPosY += moveYBy;
-                markerPlayerY += moveYBy;
+                markerPlayerNewPosY += moveYBy;
+                currRefY = mouseY;
             }
-            currRefY = mouseY;
 
             if(currPosY > 0)
             {
                 currPosY = 0;
+            }
+            else
+            {
+                markerPlayerY = markerPlayerNewPosY;
             }
         }
     }

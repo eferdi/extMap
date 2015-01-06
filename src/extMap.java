@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -8,59 +7,41 @@ import javax.swing.JPanel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-/**
- *
- * @author dingding
- */
-
-public class IndiaMapo extends JFrame
+public class extMap extends JFrame
 {
-    DisplayCanvas canvas;
-
-
-    public IndiaMapo()
+    DisplayCanvas mapCanvas;
+    public extMap()
     {
         super();
 
         Container container = getContentPane();
+        mapCanvas = new DisplayCanvas();
 
-        canvas = new DisplayCanvas();
-        //ScrollPane scrollPane = new ScrollPane();
-        //Scrollbar scrollbar = new Scrollbar();
-        //scrollPane.add(scrollbar);
-        //scrollPane.add(canvas);
-
-        container.add(canvas);
-
-
+        container.add(mapCanvas);
 
         JPanel panel = new JPanel();
         panel.setBounds(0,0,100,900);
         getContentPane().add(panel, BorderLayout.WEST);
 
-        JButton ZoominButton = new JButton("+");
-        ZoominButton.addActionListener(new ActionListener()
+        JButton buttonZoomIn = new JButton("+");
+        buttonZoomIn.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
             {
-                canvas.increment();
+                mapCanvas.increment();
             }
         });
+        panel.add(buttonZoomIn);
 
-        ZoominButton.setHorizontalAlignment(SwingConstants.LEADING);
-        ZoominButton.setVerticalAlignment(SwingConstants.TOP);
-        panel.add(ZoominButton);
-
-        JButton ZoomoutButton = new JButton("-");
-        ZoomoutButton.addActionListener(new ActionListener()
+        JButton buttonZoomOut = new JButton("-");
+        buttonZoomOut.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
             {
-                canvas.decrement();
+                mapCanvas.decrement();
             }
         });
-        panel.add(ZoomoutButton);
-
+        panel.add(buttonZoomOut);
 
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e)
@@ -68,14 +49,15 @@ public class IndiaMapo extends JFrame
                 System.exit(0);
             }
         });
-        setSize(900, 800);
 
+        //setSize(900, 800);
+        setExtendedState(getExtendedState()|JFrame.MAXIMIZED_BOTH);
         setVisible(true);
     }
 
     public static void main(String arg[])
     {
-        new IndiaMapo();
+        new extMap();
     }
 }
 

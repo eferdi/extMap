@@ -1,8 +1,10 @@
 import javax.swing.*;
 import javax.swing.event.MouseInputListener;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseWheelEvent;
 import java.awt.geom.AffineTransform;
 import java.util.*;
 
@@ -23,6 +25,25 @@ class DisplayCanvas extends JPanel implements MouseListener
         setBackground(Color.green);
         setSize(900, 800);
         addMouseListener(this);
+
+        addMouseWheelListener(new MouseAdapter()
+        {
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e)
+            {
+                super.mouseWheelMoved(e);
+                //TODO zoom into mouse position
+                if(e.getWheelRotation() > 0)
+                {
+                    decrement();
+                }
+                else
+                {
+                    increment();
+                }
+            }
+        });
+
         addMouseMotionListener(new MouseInputListener()
         {
             @Override
@@ -138,6 +159,7 @@ class DisplayCanvas extends JPanel implements MouseListener
         g2D.dispose();
     }
 
+    //TODO zoom in and out in the center of the map
     public void increment()
     {
         this.scaleBy += 0.1;

@@ -8,7 +8,7 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.geom.AffineTransform;
 import java.util.*;
 
-class DisplayCanvas extends JPanel implements MouseListener
+class displayMap extends JPanel implements MouseListener
 {
     private int currRefX = 0, currRefY = 0;
     private int currPosX = 0, currPosY = 0;
@@ -20,7 +20,7 @@ class DisplayCanvas extends JPanel implements MouseListener
     private Image map = getToolkit().getImage("C:\\Users\\Edward Teach\\Pictures\\stratis.jpg");
     private Image markerPlayer = getToolkit().getImage("C:\\Users\\Edward Teach\\Pictures\\marker_test.gif");
 
-    public DisplayCanvas()
+    public displayMap()
     {
         setBackground(Color.green);
         setSize(900, 800);

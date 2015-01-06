@@ -9,13 +9,13 @@ import java.awt.event.ActionEvent;
 
 public class extMap extends JFrame
 {
-    DisplayCanvas mapCanvas;
+    displayMap mapCanvas;
     public extMap()
     {
         super();
 
         Container container = getContentPane();
-        mapCanvas = new DisplayCanvas();
+        mapCanvas = new displayMap();
 
         container.add(mapCanvas);
 

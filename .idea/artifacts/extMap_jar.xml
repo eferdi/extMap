@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="extMap:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/extMap_jar</output-path>
+    <root id="archive" name="extMap.jar">
+      <element id="module-output" name="extMap" />
+    </root>
+  </artifact>
+</component>

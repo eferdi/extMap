@@ -6,6 +6,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.geom.AffineTransform;
+import java.io.File;
+import java.net.URLDecoder;
 import java.util.*;
 
 class displayMap extends JPanel implements MouseListener
@@ -17,11 +19,23 @@ class displayMap extends JPanel implements MouseListener
     private double scaleMax = 3;
     private double scaleMin = 0.2;
     private  Vector markers = new Vector();
-    private Image map = getToolkit().getImage("C:\\Users\\Edward Teach\\Pictures\\stratis.jpg");
-    private Image markerPlayer = getToolkit().getImage("C:\\Users\\Edward Teach\\Pictures\\marker_test.gif");
+    private Image map;// = getToolkit().getImage("./images/stratis.jpg");
+    private Image markerPlayer;// = getToolkit().getImage("./images/marker_test.gif");
 
     public displayMap()
     {
+        try
+        {
+            File self = new File(extMap.class.getProtectionDomain().getCodeSource().getLocation().getPath());
+            String path =  URLDecoder.decode(self.getParent(), "UTF-8");
+            map = getToolkit().getImage(path + "\\images\\stratis.jpg");
+            markerPlayer = getToolkit().getImage(path + "\\images\\marker_test.gif");
+        }
+        catch (Exception e)
+        {
+            System.out.print(e.getMessage());
+        }
+
         setBackground(Color.green);
         setSize(900, 800);
         addMouseListener(this);
